@@ -4,15 +4,17 @@ pipeline {
     stages {
         stage('fetching code') {
             steps {
-                echo 'fetching codes'
+                git branch: 'main', url: 'https://github.com/amoolyaad/jenkins-test.git'
             }
+        }
     stage('install apache2') {
             steps {
-                echo1 'install apache2'
+                sh 'sudo apt install apache2 -y'
             }
+    }
     stage('deploy') {
             steps {
-                echo2 'deploy'
+                sh 'sudo cp -R * /var/www/html/'
             }
         }
     }
