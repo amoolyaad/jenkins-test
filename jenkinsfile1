@@ -1,0 +1,21 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('fetching code') {
+            steps {
+                git branch: 'main', url: 'https://github.com/amoolyaad/jenkins-test.git'
+            }
+        }
+    stage('install apache2') {
+            steps {
+                sh 'sudo apt install apache2 -y'
+            }
+    }
+    stage('deploy') {
+            steps {
+                sh 'sudo cp -R * /var/www/html/'
+            }
+        }
+    }
+}
